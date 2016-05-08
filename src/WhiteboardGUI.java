@@ -1,5 +1,9 @@
 import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +12,7 @@ import java.awt.event.ActionListener;
  * Created by Momo on 5/7/16.
  */
 public class WhiteboardGUI extends JFrame {
+    Integer[][] tableData = new Integer[0][4];
     public static void main(String[] args) {
         new WhiteboardGUI();
     }
@@ -37,21 +42,24 @@ public class WhiteboardGUI extends JFrame {
             ShapeButtons shapeButtons = new ShapeButtons();
             TextStyleButtons textStyleButtons = new TextStyleButtons();
             FrontOrBackButtons frontOrBackButtons = new FrontOrBackButtons();
+            JButton setColor = new JButton("Set Color");
+            TablePanel tablePanel = new TablePanel();
+            JPanel setColorPanel = new JPanel();
+            setColorPanel.add(setColor);
             frontOrBackButtons.setAlignmentX(CENTER_ALIGNMENT);
             textStyleButtons.setAlignmentX(CENTER_ALIGNMENT);
             shapeButtons.setAlignmentX(CENTER_ALIGNMENT);
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            JButton setColor = new JButton("Set Color");
             setColor.setAlignmentX(CENTER_ALIGNMENT);
             setColor.addActionListener(new ListenForButton());
 
-            this.setPreferredSize(new Dimension(400, 400));
             this.setSize(this.getPreferredSize());
-            this.setBackground(Color.black);
+//            this.setBackground(Color.black);
             this.add(shapeButtons);
-            this.add(setColor);
+            this.add(setColorPanel);
             this.add(textStyleButtons);
             this.add(frontOrBackButtons);
+            this.add(tablePanel);
 
 
         }
@@ -67,8 +75,8 @@ public class WhiteboardGUI extends JFrame {
                 this.add(button);
                 button.addActionListener(listenForButton);
             }
-            this.setPreferredSize(new Dimension(400, 10));
-            this.setSize(this.getPreferredSize());
+//            this.setPreferredSize(new Dimension(400, 10));
+//            this.setSize(this.getPreferredSize());
         }
     }
 
@@ -96,6 +104,36 @@ public class WhiteboardGUI extends JFrame {
         }
     }
 
+    private class TablePanel extends JPanel{
+        public TablePanel(){
+            this.setLayout(new BorderLayout());
+            String[] names = {"X", "Y", "Width", "Height"};
+//            DefaultTableModel dataModel = new DefaultTableModel() {
+//                public int getColumnCount() { return 4; }
+//                public int getRowCount() { return 10;}
+//                public Object getValueAt(int row, int col) { return null; }
+//
+//
+//                @Override
+//                public String getColumnName(int index) {
+//                    return names[index];
+//                }
+//            };
+            JTable table = new JTable(tableData, names);
+            TableCellRenderer rendererFromHeader = table.getTableHeader().getDefaultRenderer();
+            JLabel headerLabel = (JLabel) rendererFromHeader;
+            headerLabel.setHorizontalAlignment(JLabel.CENTER);
+            JScrollPane tableScroll = new JScrollPane(table);
+            tableScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+            this.add(tableScroll);
+            this.setPreferredSize(new Dimension(500, 100));
+            this.setSize(this.getPreferredSize());
+            this.setBackground(Color.red);
+        }
+
+
+    }
+
 
 
     private class ListenForButton implements ActionListener{
@@ -104,5 +142,6 @@ public class WhiteboardGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
         }
+
     }
 }
