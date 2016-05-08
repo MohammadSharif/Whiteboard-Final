@@ -21,6 +21,8 @@ public class WhiteboardGUI extends JFrame {
         Canvas canvas = new Canvas();
         Controls controls = new Controls();
         this.setPreferredSize(new Dimension(800, 400));
+        this.pack();
+        this.setMinimumSize(this.getPreferredSize());
         this.setSize(this.getPreferredSize());
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
@@ -33,7 +35,8 @@ public class WhiteboardGUI extends JFrame {
     private class Canvas extends JPanel{
         public Canvas(){
             this.setPreferredSize(new Dimension(400, 400));
-            this.setSize(this.getPreferredSize());
+            this.setMinimumSize(this.getPreferredSize());
+            this.setBackground(Color.white);
         }
     }
 
@@ -46,6 +49,7 @@ public class WhiteboardGUI extends JFrame {
             TablePanel tablePanel = new TablePanel();
             JPanel setColorPanel = new JPanel();
             setColorPanel.add(setColor);
+
             frontOrBackButtons.setAlignmentX(CENTER_ALIGNMENT);
             textStyleButtons.setAlignmentX(CENTER_ALIGNMENT);
             shapeButtons.setAlignmentX(CENTER_ALIGNMENT);
@@ -54,7 +58,6 @@ public class WhiteboardGUI extends JFrame {
             setColor.addActionListener(new ListenForButton());
 
             this.setSize(this.getPreferredSize());
-//            this.setBackground(Color.black);
             this.add(shapeButtons);
             this.add(setColorPanel);
             this.add(textStyleButtons);
@@ -75,8 +78,7 @@ public class WhiteboardGUI extends JFrame {
                 this.add(button);
                 button.addActionListener(listenForButton);
             }
-//            this.setPreferredSize(new Dimension(400, 10));
-//            this.setSize(this.getPreferredSize());
+
         }
     }
 
@@ -85,6 +87,8 @@ public class WhiteboardGUI extends JFrame {
             this.setLayout(new FlowLayout());
             this.add(new TextField("Whiteboard!", 15));
             this.add(new JButton("Temp Placeholder"));
+//            this.setBackground(controlBackground);
+
         }
     }
 
@@ -107,6 +111,7 @@ public class WhiteboardGUI extends JFrame {
     private class TablePanel extends JPanel{
         public TablePanel(){
             this.setLayout(new BorderLayout());
+
             String[] names = {"X", "Y", "Width", "Height"};
 //            DefaultTableModel dataModel = new DefaultTableModel() {
 //                public int getColumnCount() { return 4; }
@@ -126,9 +131,8 @@ public class WhiteboardGUI extends JFrame {
             JScrollPane tableScroll = new JScrollPane(table);
             tableScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
             this.add(tableScroll);
-            this.setPreferredSize(new Dimension(500, 100));
-            this.setSize(this.getPreferredSize());
-            this.setBackground(Color.red);
+            this.setPreferredSize(new Dimension(400, 300));
+            this.setMaximumSize(this.getPreferredSize());
         }
 
 
