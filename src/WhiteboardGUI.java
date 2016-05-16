@@ -17,6 +17,7 @@ public class WhiteboardGUI extends JFrame {
         new WhiteboardGUI();
     }
 
+    //This constructs the complete user interface
     public WhiteboardGUI(){
         Canvas canvas = new Canvas();
         Controls controls = new Controls();
@@ -32,6 +33,9 @@ public class WhiteboardGUI extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * This class represents the canvas upon which shapes can be drawn and moved around
+     */
     private class Canvas extends JPanel{
         public Canvas(){
             this.setPreferredSize(new Dimension(400, 400));
@@ -40,6 +44,9 @@ public class WhiteboardGUI extends JFrame {
         }
     }
 
+    /**
+     * This class represents the panel that hold all of the buttons necessary for creating/deleting shapes as well as moving them around
+     */
     private class Controls extends JPanel{
         public Controls(){
             ShapeButtons shapeButtons = new ShapeButtons();
@@ -50,11 +57,8 @@ public class WhiteboardGUI extends JFrame {
             JPanel setColorPanel = new JPanel();
             setColorPanel.add(setColor);
 
-            frontOrBackButtons.setAlignmentX(CENTER_ALIGNMENT);
-            textStyleButtons.setAlignmentX(CENTER_ALIGNMENT);
-            shapeButtons.setAlignmentX(CENTER_ALIGNMENT);
+
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            setColor.setAlignmentX(CENTER_ALIGNMENT);
             setColor.addActionListener(new ListenForButton());
 
             this.setSize(this.getPreferredSize());
@@ -65,9 +69,13 @@ public class WhiteboardGUI extends JFrame {
             this.add(tablePanel);
 
 
+
         }
     }
 
+    /**
+     * This is the panel that holds the buttons for selecting different shapes
+     */
     private class ShapeButtons extends JPanel{
         public ShapeButtons(){
             ListenForButton listenForButton = new ListenForButton();
@@ -82,16 +90,21 @@ public class WhiteboardGUI extends JFrame {
         }
     }
 
+    /**
+     * This is the panel that allows for styling of the text, font and content
+     */
     private class TextStyleButtons extends JPanel{
         public TextStyleButtons(){
             this.setLayout(new FlowLayout());
             this.add(new TextField("Whiteboard!", 15));
             this.add(new JButton("Temp Placeholder"));
-//            this.setBackground(controlBackground);
 
         }
     }
 
+    /**
+     * This is the panel that holds the buttons that can move the shape to the front, back, or delete it
+     */
     private class FrontOrBackButtons extends JPanel{
         public FrontOrBackButtons(){
             JButton toFront = new JButton("Move To Front");
@@ -108,6 +121,9 @@ public class WhiteboardGUI extends JFrame {
         }
     }
 
+    /**
+     * This is the panel at the bottom of the controls which will hold a table of the coordinates of shapes and their sizes
+     */
     private class TablePanel extends JPanel{
         public TablePanel(){
             this.setLayout(new BorderLayout());
@@ -139,7 +155,9 @@ public class WhiteboardGUI extends JFrame {
     }
 
 
-
+    /**
+     * This class is a listener that will know which button is clicked and execute the proper function
+     **/
     private class ListenForButton implements ActionListener{
 
         @Override
