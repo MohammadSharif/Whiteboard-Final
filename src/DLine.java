@@ -3,4 +3,5 @@
  * This class represents the Line object
  */
 public class DLine extends DShape {
+    DShapeModel lineModel = new DLineModel();
 }

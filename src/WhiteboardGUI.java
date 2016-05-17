@@ -7,19 +7,31 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Momo on 5/7/16.
  */
 public class WhiteboardGUI extends JFrame {
     Integer[][] tableData = new Integer[0][4];
+    Canvas canvas;
     public static void main(String[] args) {
-        new WhiteboardGUI();
+        WhiteboardGUI whiteboard = new WhiteboardGUI();
+        DOval oval = new DOval();
+        oval.setX(10);
+        oval.setY(10);
+        oval.setHeight(15);
+        oval.setWidth(15);
+        oval.setColor(Color.blue);
+        whiteboard.canvas.addShape(oval);
+        whiteboard.repaint();
+        whiteboard.revalidate();
+
     }
 
     //This constructs the complete user interface
     public WhiteboardGUI(){
-        Canvas canvas = new Canvas();
+        canvas = new Canvas();
         Controls controls = new Controls();
         this.setPreferredSize(new Dimension(800, 400));
         this.pack();
@@ -37,10 +49,23 @@ public class WhiteboardGUI extends JFrame {
      * This class represents the canvas upon which shapes can be drawn and moved around
      */
     private class Canvas extends JPanel{
+        ArrayList<DShape> shapes = new ArrayList<DShape>();
         public Canvas(){
             this.setPreferredSize(new Dimension(400, 400));
             this.setMinimumSize(this.getPreferredSize());
             this.setBackground(Color.white);
+        }
+
+        public void addShape(DShape shape){
+            shapes.add(shape);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g){
+            super.paintComponent(g);
+            for(DShape shape: shapes){
+                shape.draw(g);
+            }
         }
     }
 

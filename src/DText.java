@@ -3,4 +3,5 @@
  * This class represents the Text object
  */
 public class DText extends DShape {
+    DShapeModel textModel = new DTextModel();
 }

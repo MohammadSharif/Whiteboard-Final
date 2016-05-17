@@ -3,4 +3,5 @@
  * This class represents the Rectangle object
  */
 public class DRect extends DShape {
+    DShapeModel rectModel = new DRectModel();
 }
