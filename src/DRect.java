@@ -8,7 +8,7 @@ public class DRect extends DShape {
     DShapeModel rectModel = new DRectModel();
 
     public void draw(Graphics g){
-        g.fillOval(rectModel.getX(), rectModel.getY(), rectModel.getWidth(), rectModel.getHeight());
+        g.fillRect(rectModel.getX(), rectModel.getY(), rectModel.getWidth(), rectModel.getHeight());
     }
 
     public void setX(int x){

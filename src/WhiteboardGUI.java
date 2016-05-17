@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Momo on 5/7/16.
@@ -16,23 +17,7 @@ public class WhiteboardGUI extends JFrame {
     Integer[][] tableData = new Integer[0][4];
     Canvas canvas;
     public static void main(String[] args) {
-        WhiteboardGUI whiteboard = new WhiteboardGUI();
-        DOval oval = new DOval();
-        oval.setX(10);
-        oval.setY(10);
-        oval.setHeight(15);
-        oval.setWidth(15);
-        oval.setColor(Color.blue);
-        whiteboard.canvas.addShape(oval);
-        DRect rect = new DRect();
-        rect.setX(20);
-        rect.setY(20);
-        rect.setHeight(30);
-        rect.setWidth(15);
-        whiteboard.canvas.addShape(rect);
-        whiteboard.repaint();
-        whiteboard.revalidate();
-
+        new WhiteboardGUI();
     }
 
     //This constructs the complete user interface
@@ -194,6 +179,27 @@ public class WhiteboardGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            Random randomGenerator = new Random();
+            JButton clicked = (JButton)e.getSource();
+            if(clicked.getText().equals("Rect")){
+                DRect rect = new DRect();
+                rect.setX(randomGenerator.nextInt(300));
+                rect.setY(randomGenerator.nextInt(300));
+                rect.setHeight(randomGenerator.nextInt(200));
+                rect.setWidth(randomGenerator.nextInt(200));
+                WhiteboardGUI.this.canvas.addShape(rect);
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+            } else if(clicked.getText().equals("Oval")){
+                DOval oval = new DOval();
+                oval.setX(randomGenerator.nextInt(300));
+                oval.setY(randomGenerator.nextInt(300));
+                oval.setHeight(randomGenerator.nextInt(200));
+                oval.setWidth(randomGenerator.nextInt(200));
+                WhiteboardGUI.this.canvas.addShape(oval);
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+            }
 
         }
 
