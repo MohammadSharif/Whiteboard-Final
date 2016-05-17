@@ -34,4 +34,8 @@ public class DRect extends DShape {
     public Color getColor(){
         return rectModel.getColor();
     }
+
+    public Rectangle getBounds(){
+        return rectModel.getBounds();
+    }
 }

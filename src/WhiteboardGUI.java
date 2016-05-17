@@ -7,6 +7,8 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -41,14 +43,51 @@ public class WhiteboardGUI extends JFrame {
      */
     private class Canvas extends JPanel{
         ArrayList<DShape> shapes = new ArrayList<DShape>();
+        DShape selected;
         public Canvas(){
             this.setPreferredSize(new Dimension(400, 400));
             this.setMinimumSize(this.getPreferredSize());
             this.setBackground(Color.white);
+            this.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    for(int i = shapes.size() - 1; i >= 0; i--){
+                        if(shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
+                            selected = shapes.get(i);
+                            System.out.println(shapes.get(i).getClass().getName());
+                            break;
+                        }
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
         }
 
         public void addShape(DShape shape){
             shapes.add(shape);
+        }
+
+        public void selectShape(DShape shape){
+            selected = shape;
         }
 
         @Override

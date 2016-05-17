@@ -17,4 +17,8 @@ public class DShape {
     public Color getColor(){
         return model.getColor();
     }
+
+    public Rectangle getBounds(){
+        return model.getBounds();
+    }
 }

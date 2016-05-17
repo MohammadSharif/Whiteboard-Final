@@ -14,4 +14,5 @@ public class DOvalModel extends DShapeModel{
         super(x, y, height, width, color);
     }
 
+
 }
