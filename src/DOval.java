@@ -33,4 +33,8 @@ public class DOval extends DShape{
         ovalModel.setColor(color);
     }
 
+    public Color getColor(){
+        return ovalModel.getColor();
+    }
+
 }

@@ -24,6 +24,12 @@ public class WhiteboardGUI extends JFrame {
         oval.setWidth(15);
         oval.setColor(Color.blue);
         whiteboard.canvas.addShape(oval);
+        DRect rect = new DRect();
+        rect.setX(20);
+        rect.setY(20);
+        rect.setHeight(30);
+        rect.setWidth(15);
+        whiteboard.canvas.addShape(rect);
         whiteboard.repaint();
         whiteboard.revalidate();
 
@@ -64,6 +70,7 @@ public class WhiteboardGUI extends JFrame {
         protected void paintComponent(Graphics g){
             super.paintComponent(g);
             for(DShape shape: shapes){
+                g.setColor(shape.getColor());
                 shape.draw(g);
             }
         }
