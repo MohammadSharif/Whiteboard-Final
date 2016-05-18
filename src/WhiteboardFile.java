@@ -2,12 +2,15 @@
  * Created by Abdellatif on 5/17/2016.
  */
 
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
+import javax.swing.*;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 /**
  * This class deals with File Saving & Opening
@@ -29,6 +32,9 @@ public class WhiteboardFile {
         encoder.close();
     }
 
+    public static void saveImage(String fileName, JFrame frame) throws Exception{
+// TODO: save Image 
+    }
     /**
      * reads a saved file
      * @param fileName the file name with the extension
@@ -36,6 +42,7 @@ public class WhiteboardFile {
      * @throws Exception
      */
     public static DShapeModel[] read (String fileName) throws Exception{
+        // TODO: check whiteboard state (should only read in normal state)
         XMLDecoder decoder =
                 new XMLDecoder(new BufferedInputStream(
                         new FileInputStream(fileName)));
