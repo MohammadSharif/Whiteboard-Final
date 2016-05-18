@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7a9a7587-6e22-45c9-ab98-bf51bde32435" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WhiteboardFile.java" afterPath="$PROJECT_DIR$/src/WhiteboardFile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="CS151_HW6.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,12 +38,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+              <first_editor relative-caret-position="88">
+                <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -54,7 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WhiteboardFile.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WhiteboardFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WhiteboardFile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
@@ -126,6 +126,7 @@
         <option value="$PROJECT_DIR$/src/DShape.java" />
         <option value="$PROJECT_DIR$/src/WhiteboardGUI.java" />
         <option value="$PROJECT_DIR$/src/WhiteboardFile.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -725,7 +726,7 @@
       <workItem from="1463433729141" duration="1112000" />
       <workItem from="1463439927621" duration="5959000" />
       <workItem from="1463517046843" duration="3096000" />
-      <workItem from="1463529227835" duration="1984000" />
+      <workItem from="1463529227835" duration="2039000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1462687784938</created>
@@ -741,11 +742,18 @@
       <option name="project" value="LOCAL" />
       <updated>1463530810014</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="implement read">
+      <created>1463531226924</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1463531226924</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25723000" />
+    <option name="totallyTimeSpent" value="25778000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -819,7 +827,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="implement read" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement read" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1262,20 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-572">
@@ -1295,6 +1290,20 @@
             <element signature="imports" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="88">
+            <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
