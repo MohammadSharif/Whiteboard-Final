@@ -5,7 +5,7 @@ import java.awt.geom.Ellipse2D;
  * Created by Momo on 5/16/16.
  * This class represents the Oval object
  */
-public class DOval extends DShape implements ModelListener{
+public class DOval extends DShape{
 
     DShapeModel ovalModel = new DOvalModel();
     public DOval(){
@@ -45,8 +45,4 @@ public class DOval extends DShape implements ModelListener{
         return ovalModel.getColor();
     }
 
-    @Override
-    public void modelChanged(DShapeModel model) {
-        
-    }
 }

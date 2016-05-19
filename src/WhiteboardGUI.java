@@ -1,3 +1,4 @@
+
 import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -15,7 +16,7 @@ import java.util.Random;
 /**
  * Created by Momo on 5/7/16.
  */
-public class WhiteboardGUI extends JFrame {
+public class WhiteboardGUI extends JFrame{
     Integer[][] tableData = new Integer[0][4];
     Canvas canvas;
     public static void main(String[] args) {
@@ -38,10 +39,11 @@ public class WhiteboardGUI extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+
     /**
      * This class represents the canvas upon which shapes can be drawn and moved around
      */
-    private class Canvas extends JPanel{
+    private class Canvas extends JPanel implements ModelListener{
         ArrayList<DShape> shapes = new ArrayList<DShape>();
         DShape selected;
         public Canvas(){
@@ -56,7 +58,7 @@ public class WhiteboardGUI extends JFrame {
                             if(selected != null){
                                 selected.setColor(Color.gray);
                             }
-                            selected = shapes.get(i);
+                            selectShape(shapes.get(i));
                             System.out.println(shapes.get(i).getClass().getName());
                             selected.setColor(Color.CYAN);
                             WhiteboardGUI.this.repaint();
@@ -90,6 +92,7 @@ public class WhiteboardGUI extends JFrame {
 
         public void addShape(DShape shape){
             shapes.add(shape);
+            shape.model.addListener(canvas);
         }
 
         public void selectShape(DShape shape){
@@ -103,6 +106,12 @@ public class WhiteboardGUI extends JFrame {
                 g.setColor(shape.getColor());
                 shape.draw(g);
             }
+        }
+
+        @Override
+        public void modelChanged(DShapeModel model) {
+            WhiteboardGUI.this.repaint();
+            WhiteboardGUI.this.revalidate();
         }
     }
 
@@ -232,6 +241,7 @@ public class WhiteboardGUI extends JFrame {
                 rect.setY(randomGenerator.nextInt(300));
                 rect.setHeight(randomGenerator.nextInt(200));
                 rect.setWidth(randomGenerator.nextInt(200));
+                rect.rectModel.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(rect);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
@@ -241,16 +251,16 @@ public class WhiteboardGUI extends JFrame {
                 oval.setY(randomGenerator.nextInt(300));
                 oval.setHeight(randomGenerator.nextInt(200));
                 oval.setWidth(randomGenerator.nextInt(200));
+                oval.ovalModel.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(oval);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
             } else {
-                if(canvas.shapes != null) {
-                    ArrayList<DShape> shapes = canvas.shapes;
-                    for (DShape shape : shapes) {
-                        shape.setColor(Color.RED);
-                    }
-                }
+                canvas.selected.setColor(Color.green);
+                canvas.selected.setX(0);
+                canvas.selected.setY(100);
+
+
             }
 
         }

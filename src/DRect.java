@@ -5,7 +5,7 @@ import java.awt.*;
  * Created by Momo on 5/16/16.
  * This class represents the Rectangle object
  */
-public class DRect extends DShape implements ModelListener{
+public class DRect extends DShape{
     DShapeModel rectModel = new DRectModel();
 
     public DRect(){
@@ -44,11 +44,5 @@ public class DRect extends DShape implements ModelListener{
         return rectModel.getBounds();
     }
 
-    @Override
-    public void modelChanged(DShapeModel model) {
-        if(model.equals(rectModel)){
-            gui.repaint();
-            gui.revalidate();
-        }
-    }
+
 }

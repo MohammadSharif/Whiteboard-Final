@@ -1,4 +1,5 @@
 
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,7 +13,8 @@ public class DShapeModel {
     private int height;
     private int width;
     private Color color;
-    private ArrayList<ModelListener> listeners;
+    private ArrayList<ModelListener> listeners = new ArrayList<>();
+
 
     public DShapeModel(){
         x = 0;
@@ -27,7 +29,6 @@ public class DShapeModel {
         this.height = height;
         this.width = width;
         this.color = color;
-        listeners = new ArrayList<>();
     }
 
     public int getX() {
@@ -36,6 +37,7 @@ public class DShapeModel {
 
     public void setX(int x) {
         this.x = x;
+        notifyListeners();
     }
 
     public int getY() {
@@ -44,6 +46,7 @@ public class DShapeModel {
 
     public void setY(int y) {
         this.y = y;
+        notifyListeners();
     }
 
     public int getHeight() {
@@ -52,6 +55,7 @@ public class DShapeModel {
 
     public void setHeight(int height) {
         this.height = height;
+        notifyListeners();
     }
 
     public int getWidth() {
@@ -60,6 +64,7 @@ public class DShapeModel {
 
     public void setWidth(int width) {
         this.width = width;
+        notifyListeners();
     }
 
     public Color getColor() {
@@ -68,9 +73,7 @@ public class DShapeModel {
 
     public void setColor(Color color) {
         this.color = color;
-        for(ModelListener listener: listeners){
-            listener.modelChanged(this);
-        }
+        notifyListeners();
     }
 
     public Rectangle getBounds(){
@@ -83,6 +86,12 @@ public class DShapeModel {
 
     public void removeListener(DShape shape){
         listeners.remove(shape);
+    }
+
+    public void notifyListeners(){
+        for(ModelListener listener: listeners){
+            listener.modelChanged(DShapeModel.this);
+        }
     }
 
     public ArrayList<ModelListener> getListeners(){
