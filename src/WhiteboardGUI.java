@@ -78,7 +78,9 @@ public class WhiteboardGUI extends JFrame{
     }
 
     /**
-     * MouseListener
+     * This class is key to providing a large variety of the functionalities that happen on the canvas,
+     * this listener listens for clicks on the canvas and moves shapes around if they have been clicked, or resizes them if
+     * the knob has been clicked.
      */
 
     private class DragListener implements MouseListener, MouseMotionListener{
@@ -89,21 +91,30 @@ public class WhiteboardGUI extends JFrame{
         int pressPointY;
         Point movingPoint;
         Point anchorPoint;
+        boolean move = false;
+        boolean resize = false;
+
         @Override
         public void mouseClicked(MouseEvent e) {
-        for(int i = canvas.shapes.size() - 1; i >= 0; i--){
-            if(canvas.shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
-//                if(canvas.selected != null){
-//                    canvas.selected.setColor(canvas.selected.getColor());
-//                }
-                canvas.selectShape(canvas.shapes.get(i));
-                System.out.println(canvas.shapes.get(i).getClass().getName());
-                x = canvas.selected.getX();
-                y = canvas.selected.getY();
-                break;
+            //This can check if a shape was clicked, if it was it gets stored as the selected shape in the canvas
+            //It also will pick the topmost shape if two shapes overlap
+            for(int i = canvas.shapes.size() - 1; i >= 0; i--){
+                if(canvas.shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
+    //                if(canvas.selected != null){
+    //                    canvas.selected.setColor(canvas.selected.getColor());
+    //                }
+                    canvas.selectShape(canvas.shapes.get(i));
+                    System.out.println(canvas.shapes.get(i).getClass().getName());
+                    x = canvas.selected.getX();
+                    y = canvas.selected.getY();
+                    move = true;
+                    break;
+                }
             }
-        }
             Point[] knobs = canvas.selected.getKnobs();
+            //When a knob is clicked it indicates that the shape will be resized
+            //This gets the knob that was clicked and stores it as a moving knob, while it's diagonal
+            //Is going to be treated as the anchor
             for(Point knob: knobs) {
                 System.out.println(e.getX() + " " + e.getY());
                 Rectangle temp = new Rectangle(knob, new Dimension(9, 9));
@@ -119,11 +130,10 @@ public class WhiteboardGUI extends JFrame{
                     } else{
                         anchorPoint = knobs[1];
                     }
-
                     System.out.println(movingPoint);
                     System.out.println(anchorPoint);
-
-
+                    move = false;
+                    resize = true;
                     break;
                 }
             }
@@ -135,12 +145,14 @@ public class WhiteboardGUI extends JFrame{
         public void mousePressed(MouseEvent e) {
             pressPointX = e.getX();
             pressPointY = e.getY();
-
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-
+            anchorPoint = null;
+            movingPoint = null;
+            move = false;
+            resize = false;
         }
 
         @Override
@@ -171,12 +183,49 @@ public class WhiteboardGUI extends JFrame{
 //                    canvas.selected.setY(canvas.selected.getY() - yDif);
 //
 //                }
-            Point[] knobs = canvas.selected.getKnobs();
-            int xDif = e.getX() - pressPointX;
-            int yDif = e.getY() - pressPointY;
+            //If the shape was clicked and needs to be moved this will move the shape around the canvas as well as the knobs
+            if(move) {
+                int xDif = e.getX() - pressPointX;
+                int yDif = e.getY() - pressPointY;
+                canvas.selected.setX(x + xDif);
+                canvas.selected.setY(y + yDif);
+            }
+            //If a knob was clicked, this code takes care of properly resizing the shape
+            if(resize) {
+                int xChange = e.getX() - (int) movingPoint.getX();
+                int yChange = e.getY() - (int) movingPoint.getY();
+                movingPoint.move(e.getX(), e.getY());
+                int newHeight = canvas.selected.getHeight() - yChange;
+                int newWidth = canvas.selected.getWidth() - xChange;
+                x = canvas.selected.getX() - xChange;
+                y = canvas.selected.getY() - yChange;
+                if (movingPoint.getY() < anchorPoint.getY()) {
+                    if (movingPoint.getX() < anchorPoint.getX()) {
+                        canvas.selected.setX(x + 2 * xChange);
+                        canvas.selected.setY(y + 2 * yChange);
+                        canvas.selected.setHeight(newHeight);
+                        canvas.selected.setWidth(newWidth);
+                    } else if (movingPoint.getX() > anchorPoint.getX()) {
+                        newWidth = canvas.selected.getWidth() + xChange;
+                        canvas.selected.setY(y + 2 * yChange);
+                        canvas.selected.setHeight(newHeight);
+                        canvas.selected.setWidth(newWidth);
+                    }
+                } else {
+                    if (movingPoint.getX() < anchorPoint.getX()) {
+                        canvas.selected.setX(x + 2 * xChange);
+                        newHeight = canvas.selected.getHeight() + yChange;
+                        canvas.selected.setHeight(newHeight);
+                        canvas.selected.setWidth(newWidth);
+                    } else if (movingPoint.getX() > anchorPoint.getX()) {
+                        newWidth = canvas.selected.getWidth() + xChange;
+                        newHeight = canvas.selected.getHeight() + yChange;
+                        canvas.selected.setHeight(newHeight);
+                        canvas.selected.setWidth(newWidth);
+                    }
 
-            canvas.selected.setX(x + xDif);
-            canvas.selected.setY(y + yDif);
+                }
+            }
 
         }
 
