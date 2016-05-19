@@ -101,12 +101,22 @@ public class WhiteboardGUI extends JFrame{
                 break;
             }
         }
+            for(Point knob: canvas.selected.getKnobs()) {
+                System.out.println(e.getX() + " " + e.getY());
+                Rectangle temp = new Rectangle(knob, new Dimension(9, 9));
+                if (temp.getBounds().contains(new Point(e.getX(), e.getY()))){
+                    System.out.println("Resize");
+                    break;
+                }
+            }
+
     }
 
         @Override
         public void mousePressed(MouseEvent e) {
             pressPointX = e.getX();
             pressPointY = e.getY();
+
         }
 
         @Override

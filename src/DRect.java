@@ -17,7 +17,7 @@ public class DRect extends DShape{
         Point[] corners = getKnobs();
         g.setColor(Color.black);
         for(Point corner: corners) {
-            g.fillRect(corner.x - (9/2), corner.y - (9/2), 9, 9);
+            g.fillRect(corner.x, corner.y, 9, 9);
         }
     }
 

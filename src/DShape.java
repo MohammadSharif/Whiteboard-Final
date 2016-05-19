@@ -60,11 +60,12 @@ public class DShape implements ModelListener{
     }
 
     public Point[] getKnobs(){
-        Point topLeft = new Point(model.getX(), model.getY());
-        Point bottomLeft = new Point(model.getX(), model.getY() + model.getHeight());
-        Point topRight = new Point(model.getX() + model.getWidth(), model.getY());
-        Point bottomRight = new Point(model.getX() + model.getWidth(), model.getY() + model.getHeight());
+        Point topLeft = new Point(model.getX() - (9/2), model.getY() - (9/2));
+        Point bottomLeft = new Point(model.getX() - (9/2), model.getY() + model.getHeight() - (9/2));
+        Point topRight = new Point(model.getX() + model.getWidth() - (9/2), model.getY() - (9/2));
+        Point bottomRight = new Point(model.getX() + model.getWidth() - (9/2), model.getY() + model.getHeight() - (9/2));
         Point[] knobs = {topLeft, bottomLeft, topRight, bottomRight};
+        System.out.println(topLeft);
         return knobs;
     }
 
