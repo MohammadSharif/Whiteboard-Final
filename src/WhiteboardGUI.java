@@ -91,14 +91,11 @@ public class WhiteboardGUI extends JFrame{
         public void mouseClicked(MouseEvent e) {
         for(int i = canvas.shapes.size() - 1; i >= 0; i--){
             if(canvas.shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
-                if(canvas.selected != null){
-                    canvas.selected.setColor(Color.gray);
-                }
+//                if(canvas.selected != null){
+//                    canvas.selected.setColor(canvas.selected.getColor());
+//                }
                 canvas.selectShape(canvas.shapes.get(i));
                 System.out.println(canvas.shapes.get(i).getClass().getName());
-                canvas.selected.setColor(Color.CYAN);
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
                 x = canvas.selected.getX();
                 y = canvas.selected.getY();
                 break;
@@ -182,7 +179,6 @@ public class WhiteboardGUI extends JFrame{
             this.add(textStyleButtons);
             this.add(frontOrBackButtons);
             this.add(tablePanel);
-
 
 
         }
@@ -270,6 +266,9 @@ public class WhiteboardGUI extends JFrame{
     }
 
 
+
+
+
     /**
      * This class is a listener that will know which button is clicked and execute the proper function
      **/
@@ -299,11 +298,16 @@ public class WhiteboardGUI extends JFrame{
                 WhiteboardGUI.this.canvas.addShape(oval);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
-            } else {
+            } else if(clicked.getText().equals("Set Color")){
+                if(canvas.selected != null) {
+                    canvas.selected.setColor(JColorChooser.showDialog(null, "Set Color", canvas.selected.getColor()));
+                }
+            }
+            else
+            {
                 canvas.selected.setColor(Color.green);
                 canvas.selected.setX(0);
                 canvas.selected.setY(100);
-
 
             }
 
