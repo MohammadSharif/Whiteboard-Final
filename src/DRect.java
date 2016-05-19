@@ -6,59 +6,73 @@ import java.awt.*;
  * This class represents the Rectangle object
  */
 public class DRect extends DShape{
-    DShapeModel rectModel = new DRectModel();
+//    DShapeModel rectModel = new DRectModel();
 
     public DRect(){
-        super();
+        model = new DRectModel();
     }
 
     public void draw(Graphics g){
-        g.fillRect(rectModel.getX(), rectModel.getY(), rectModel.getWidth(), rectModel.getHeight());
+        g.fillRect(model.getX(), model.getY(), model.getWidth(), model.getHeight());
+        Point[] corners = getKnobs();
+        g.setColor(Color.black);
+        for(Point corner: corners) {
+            g.fillRect(corner.x - (9/2), corner.y - (9/2), 9, 9);
+        }
     }
 
     public void setX(int x){
-        rectModel.setX(x);
+        model.setX(x);
     }
 
     public void setY(int y){
-        rectModel.setY(y);
+        model.setY(y);
     }
 
     public void setHeight(int height){
-        rectModel.setHeight(height);
+        model.setHeight(height);
     }
 
     public void setWidth(int width){
-        rectModel.setWidth(width);
+        model.setWidth(width);
     }
 
     public void setColor(Color color){
-        rectModel.setColor(color);
+        model.setColor(color);
     }
 
     public int getX(){
-        return rectModel.getX();
+        return model.getX();
     }
 
     public int getY(){
-        return rectModel.getY();
+        return model.getY();
     }
 
     public int getHeight(){
-        return rectModel.getHeight();
+        return model.getHeight();
     }
 
     public int getWidth(){
-        return rectModel.getWidth();
+        return model.getWidth();
     }
+
+//    public Point[] getKnobs(){
+//        Point topLeft = new Point(rectModel.getX(), rectModel.getY());
+//        Point bottomLeft = new Point(rectModel.getX(), rectModel.getY() + rectModel.getHeight());
+//        Point topRight = new Point(rectModel.getX() + rectModel.getWidth(), rectModel.getY());
+//        Point bottomRight = new Point(rectModel.getX() + rectModel.getWidth(), rectModel.getY() + rectModel.getHeight());
+//        Point[] knobs = {topLeft, bottomLeft, topRight, bottomRight};
+//        return knobs;
+//    }
 
 
     public Color getColor(){
-        return rectModel.getColor();
+        return model.getColor();
     }
 
     public Rectangle getBounds(){
-        return rectModel.getBounds();
+        return model.getBounds();
     }
 
 

@@ -5,10 +5,10 @@ import java.awt.*;
  * This class represents the overall shape class
  */
 public class DShape implements ModelListener{
-    DShapeModel model = new DShapeModel();
+    protected DShapeModel model;
     WhiteboardGUI gui;
     public DShape(){
-
+        model = new DShapeModel();
     }
 
     public DShape(WhiteboardGUI gui){
@@ -57,6 +57,15 @@ public class DShape implements ModelListener{
 
     public int getWidth(){
         return model.getWidth();
+    }
+
+    public Point[] getKnobs(){
+        Point topLeft = new Point(model.getX(), model.getY());
+        Point bottomLeft = new Point(model.getX(), model.getY() + model.getHeight());
+        Point topRight = new Point(model.getX() + model.getWidth(), model.getY());
+        Point bottomRight = new Point(model.getX() + model.getWidth(), model.getY() + model.getHeight());
+        Point[] knobs = {topLeft, bottomLeft, topRight, bottomRight};
+        return knobs;
     }
 
     public Rectangle getBounds(){

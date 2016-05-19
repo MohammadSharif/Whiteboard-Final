@@ -7,59 +7,63 @@ import java.awt.geom.Ellipse2D;
  */
 public class DOval extends DShape{
 
-    DShapeModel ovalModel = new DOvalModel();
     public DOval(){
-        super();
+        model = new DOvalModel();
     }
 
 
     public void draw(Graphics g){
-        g.fillOval(ovalModel.getX(), ovalModel.getY(), ovalModel.getWidth(), ovalModel.getHeight());
+        g.fillOval(model.getX(), model.getY(), model.getWidth(), model.getHeight());
+        Point[] corners = getKnobs();
+        g.setColor(Color.black);
+        for(Point corner: corners) {
+            g.fillRect(corner.x - (9/2), corner.y - (9/2), 9, 9);
+        }
     }
 
     public void setX(int x){
-        ovalModel.setX(x);
+        model.setX(x);
     }
 
     public void setY(int y){
-        ovalModel.setY(y);
+        model.setY(y);
     }
 
     public void setHeight(int height){
-        ovalModel.setHeight(height);
+        model.setHeight(height);
     }
 
     public void setWidth(int width){
-        ovalModel.setWidth(width);
+        model.setWidth(width);
     }
 
     public void setColor(Color color){
-        ovalModel.setColor(color);
+        model.setColor(color);
     }
 
     public int getX(){
-        return ovalModel.getX();
+        return model.getX();
     }
 
     public int getY(){
-        return ovalModel.getY();
+        return model.getY();
     }
 
     public int getHeight(){
-        return ovalModel.getHeight();
+        return model.getHeight();
     }
 
     public int getWidth(){
-        return ovalModel.getWidth();
+        return model.getWidth();
     }
 
 
     public Rectangle getBounds(){
-        return ovalModel.getBounds();
+        return model.getBounds();
     }
 
     public Color getColor(){
-        return ovalModel.getColor();
+        return model.getColor();
     }
 
 }

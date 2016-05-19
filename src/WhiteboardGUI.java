@@ -284,7 +284,7 @@ public class WhiteboardGUI extends JFrame{
                 rect.setY(randomGenerator.nextInt(300));
                 rect.setHeight(randomGenerator.nextInt(200));
                 rect.setWidth(randomGenerator.nextInt(200));
-                rect.rectModel.addListener(canvas);
+                rect.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(rect);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
@@ -294,7 +294,7 @@ public class WhiteboardGUI extends JFrame{
                 oval.setY(randomGenerator.nextInt(300));
                 oval.setHeight(randomGenerator.nextInt(200));
                 oval.setWidth(randomGenerator.nextInt(200));
-                oval.ovalModel.addListener(canvas);
+                oval.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(oval);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
