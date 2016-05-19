@@ -19,8 +19,8 @@ public class DRectModel extends DShapeModel{
         listeners.add(listener);
     }
 
-    public void removeListener(ModelListener shape){
-        listeners.remove(shape);
+    public void removeListener(ModelListener listener){
+        listeners.remove(listener);
     }
 
     public void notifyListeners(){

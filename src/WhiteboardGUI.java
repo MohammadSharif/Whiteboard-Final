@@ -55,6 +55,15 @@ public class WhiteboardGUI extends JFrame{
         public void addShape(DShape shape){
             shapes.add(shape);
             shape.model.addListener(canvas);
+            if(selected == null){
+                selected = shape;
+            }
+        }
+
+        public void deleteShape(){
+            selected.model.removeListener(canvas);
+            shapes.remove(selected);
+            selected = null;
         }
 
         public void selectShape(DShape shape){
@@ -355,24 +364,23 @@ public class WhiteboardGUI extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Random randomGenerator = new Random();
             JButton clicked = (JButton)e.getSource();
             if(clicked.getText().equals("Rect")){
                 DRect rect = new DRect();
-                rect.setX(randomGenerator.nextInt(300));
-                rect.setY(randomGenerator.nextInt(300));
-                rect.setHeight(randomGenerator.nextInt(200));
-                rect.setWidth(randomGenerator.nextInt(200));
+                rect.setX(10);
+                rect.setY(10);
+                rect.setHeight(20);
+                rect.setWidth(20);
                 rect.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(rect);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
             } else if(clicked.getText().equals("Oval")){
                 DOval oval = new DOval();
-                oval.setX(randomGenerator.nextInt(300));
-                oval.setY(randomGenerator.nextInt(300));
-                oval.setHeight(randomGenerator.nextInt(200));
-                oval.setWidth(randomGenerator.nextInt(200));
+                oval.setX(10);
+                oval.setY(10);
+                oval.setHeight(20);
+                oval.setWidth(20);
                 oval.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(oval);
                 WhiteboardGUI.this.repaint();
@@ -381,6 +389,10 @@ public class WhiteboardGUI extends JFrame{
                 if(canvas.selected != null) {
                     canvas.selected.setColor(JColorChooser.showDialog(null, "Set Color", canvas.selected.getColor()));
                 }
+            } else if(clicked.getText().equals("Remove Shape")){
+                canvas.deleteShape();
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
             }
             else
             {

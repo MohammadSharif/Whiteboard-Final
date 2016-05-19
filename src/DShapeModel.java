@@ -84,8 +84,8 @@ public class DShapeModel {
         listeners.add(listener);
     }
 
-    public void removeListener(DShape shape){
-        listeners.remove(shape);
+    public void removeListener(ModelListener listener){
+        listeners.remove(listener);
     }
 
     public void notifyListeners(){
