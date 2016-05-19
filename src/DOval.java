@@ -37,6 +37,23 @@ public class DOval extends DShape{
         ovalModel.setColor(color);
     }
 
+    public int getX(){
+        return ovalModel.getX();
+    }
+
+    public int getY(){
+        return ovalModel.getY();
+    }
+
+    public int getHeight(){
+        return ovalModel.getHeight();
+    }
+
+    public int getWidth(){
+        return ovalModel.getWidth();
+    }
+
+
     public Rectangle getBounds(){
         return ovalModel.getBounds();
     }

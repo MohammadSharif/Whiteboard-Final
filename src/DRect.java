@@ -36,6 +36,23 @@ public class DRect extends DShape{
         rectModel.setColor(color);
     }
 
+    public int getX(){
+        return rectModel.getX();
+    }
+
+    public int getY(){
+        return rectModel.getY();
+    }
+
+    public int getHeight(){
+        return rectModel.getHeight();
+    }
+
+    public int getWidth(){
+        return rectModel.getWidth();
+    }
+
+
     public Color getColor(){
         return rectModel.getColor();
     }

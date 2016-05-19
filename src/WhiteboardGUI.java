@@ -6,10 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -50,44 +47,9 @@ public class WhiteboardGUI extends JFrame{
             this.setPreferredSize(new Dimension(400, 400));
             this.setMinimumSize(this.getPreferredSize());
             this.setBackground(Color.white);
-            this.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    for(int i = shapes.size() - 1; i >= 0; i--){
-                        if(shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
-                            if(selected != null){
-                                selected.setColor(Color.gray);
-                            }
-                            selectShape(shapes.get(i));
-                            System.out.println(shapes.get(i).getClass().getName());
-                            selected.setColor(Color.CYAN);
-                            WhiteboardGUI.this.repaint();
-                            WhiteboardGUI.this.revalidate();
-                            break;
-                        }
-                    }
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-            });
+            DragListener dragListener = new DragListener();
+            this.addMouseListener(dragListener);
+            this.addMouseMotionListener(dragListener);
         }
 
         public void addShape(DShape shape){
@@ -112,6 +74,88 @@ public class WhiteboardGUI extends JFrame{
         public void modelChanged(DShapeModel model) {
             WhiteboardGUI.this.repaint();
             WhiteboardGUI.this.revalidate();
+        }
+    }
+
+    /**
+     * MouseListener
+     */
+
+    private class DragListener implements MouseListener, MouseMotionListener{
+
+        int x = 0;
+        int y = 0;
+        int pressPointX;
+        int pressPointY;
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        for(int i = canvas.shapes.size() - 1; i >= 0; i--){
+            if(canvas.shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
+                if(canvas.selected != null){
+                    canvas.selected.setColor(Color.gray);
+                }
+                canvas.selectShape(canvas.shapes.get(i));
+                System.out.println(canvas.shapes.get(i).getClass().getName());
+                canvas.selected.setColor(Color.CYAN);
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+                x = canvas.selected.getX();
+                y = canvas.selected.getY();
+                break;
+            }
+        }
+    }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            pressPointX = e.getX();
+            pressPointY = e.getY();
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+    }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+    }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+
+//                if (e.getX() > x) {
+//                    xDif = e.getX() - x;
+//                    canvas.selected.setX(canvas.selected.getX() + xDif);
+//
+//                } else if (e.getY() > y) {
+//                    yDif = e.getY() - y;
+//                    canvas.selected.setY(canvas.selected.getY() + yDif);
+//
+//                } else {
+//                    xDif = x - e.getX();
+//                    yDif = y - e.getY();
+//                    canvas.selected.setX(canvas.selected.getX() - xDif);
+//                    canvas.selected.setY(canvas.selected.getY() - yDif);
+//
+//                }
+            int xDif = e.getX() - pressPointX;
+            int yDif = e.getY() - pressPointY;
+
+            canvas.selected.setX(x + xDif);
+            canvas.selected.setY(y + yDif);
+
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+
         }
     }
 

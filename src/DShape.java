@@ -43,6 +43,22 @@ public class DShape implements ModelListener{
         model.setWidth(width);
     }
 
+    public int getX(){
+        return model.getX();
+    }
+
+    public int getY(){
+        return model.getY();
+    }
+
+    public int getHeight(){
+        return model.getHeight();
+    }
+
+    public int getWidth(){
+        return model.getWidth();
+    }
+
     public Rectangle getBounds(){
         return model.getBounds();
     }
