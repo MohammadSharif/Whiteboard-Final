@@ -6,8 +6,13 @@ import java.awt.*;
  */
 public class DShape {
     DShapeModel model = new DShapeModel();
+    WhiteboardGUI gui;
     public DShape(){
 
+    }
+
+    public DShape(WhiteboardGUI gui){
+        this.gui = gui;
     }
 
     public void draw(Graphics g){
@@ -16,6 +21,10 @@ public class DShape {
 
     public Color getColor(){
         return model.getColor();
+    }
+
+    public void setColor(Color color){
+        model.setColor(color);
     }
 
     public Rectangle getBounds(){

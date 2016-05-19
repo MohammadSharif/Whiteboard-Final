@@ -1,11 +1,16 @@
+
 import java.awt.*;
 
 /**
  * Created by Momo on 5/16/16.
  * This class represents the Rectangle object
  */
-public class DRect extends DShape {
+public class DRect extends DShape implements ModelListener{
     DShapeModel rectModel = new DRectModel();
+
+    public DRect(){
+        super();
+    }
 
     public void draw(Graphics g){
         g.fillRect(rectModel.getX(), rectModel.getY(), rectModel.getWidth(), rectModel.getHeight());
@@ -37,5 +42,13 @@ public class DRect extends DShape {
 
     public Rectangle getBounds(){
         return rectModel.getBounds();
+    }
+
+    @Override
+    public void modelChanged(DShapeModel model) {
+        if(model.equals(rectModel)){
+            gui.repaint();
+            gui.revalidate();
+        }
     }
 }

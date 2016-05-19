@@ -1,4 +1,6 @@
+
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Momo on 5/16/16.
@@ -10,6 +12,7 @@ public class DShapeModel {
     private int height;
     private int width;
     private Color color;
+    private ArrayList<ModelListener> listeners;
 
     public DShapeModel(){
         x = 0;
@@ -24,6 +27,7 @@ public class DShapeModel {
         this.height = height;
         this.width = width;
         this.color = color;
+        listeners = new ArrayList<>();
     }
 
     public int getX() {
@@ -64,9 +68,24 @@ public class DShapeModel {
 
     public void setColor(Color color) {
         this.color = color;
+        for(ModelListener listener: listeners){
+            listener.modelChanged(this);
+        }
     }
 
     public Rectangle getBounds(){
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
+    }
+
+    public void addListener(ModelListener listener){
+        listeners.add(listener);
+    }
+
+    public void removeListener(DShape shape){
+        listeners.remove(shape);
+    }
+
+    public ArrayList<ModelListener> getListeners(){
+        return listeners;
     }
 }

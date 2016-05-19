@@ -53,8 +53,14 @@ public class WhiteboardGUI extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     for(int i = shapes.size() - 1; i >= 0; i--){
                         if(shapes.get(i).getBounds().contains(new Point(e.getX(), e.getY()))){
+                            if(selected != null){
+                                selected.setColor(Color.gray);
+                            }
                             selected = shapes.get(i);
                             System.out.println(shapes.get(i).getClass().getName());
+                            selected.setColor(Color.CYAN);
+                            WhiteboardGUI.this.repaint();
+                            WhiteboardGUI.this.revalidate();
                             break;
                         }
                     }
@@ -238,6 +244,13 @@ public class WhiteboardGUI extends JFrame {
                 WhiteboardGUI.this.canvas.addShape(oval);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
+            } else {
+                if(canvas.shapes != null) {
+                    ArrayList<DShape> shapes = canvas.shapes;
+                    for (DShape shape : shapes) {
+                        shape.setColor(Color.RED);
+                    }
+                }
             }
 
         }
