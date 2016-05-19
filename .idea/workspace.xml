@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a9a7587-6e22-45c9-ab98-bf51bde32435" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DRect.java" afterPath="$PROJECT_DIR$/src/DRect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DShape.java" afterPath="$PROJECT_DIR$/src/DShape.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WhiteboardGUI.java" afterPath="$PROJECT_DIR$/src/WhiteboardGUI.java" />
     </list>
     <ignored path="CS151_HW6.iws" />
@@ -75,8 +72,8 @@
       <file leaf-file-name="WhiteboardGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="110" column="13" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+            <state relative-caret-position="311">
+              <caret line="119" column="45" selection-start-line="119" selection-start-column="45" selection-end-line="119" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,8 +121,8 @@
       <file leaf-file-name="DShape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DShape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="65" column="119" selection-start-line="65" selection-start-column="119" selection-end-line="65" selection-end-column="119" />
+            <state relative-caret-position="173">
+              <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -753,7 +750,7 @@
       <workItem from="1463524766365" duration="2023000" />
       <workItem from="1463616927799" duration="419000" />
       <workItem from="1463620334303" duration="13857000" />
-      <workItem from="1463678427252" duration="3492000" />
+      <workItem from="1463678427252" duration="5144000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1462687784938</created>
@@ -766,7 +763,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44829000" />
+    <option name="totallyTimeSpent" value="46481000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1313,14 +1310,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DShape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="65" column="119" selection-start-line="65" selection-start-column="119" selection-end-line="65" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DRect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -1339,10 +1328,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DShape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="110" column="13" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+        <state relative-caret-position="311">
+          <caret line="119" column="45" selection-start-line="119" selection-start-column="45" selection-end-line="119" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -87,6 +87,8 @@ public class WhiteboardGUI extends JFrame{
         int y = 0;
         int pressPointX;
         int pressPointY;
+        Point movingPoint;
+        Point anchorPoint;
         @Override
         public void mouseClicked(MouseEvent e) {
         for(int i = canvas.shapes.size() - 1; i >= 0; i--){
@@ -101,14 +103,31 @@ public class WhiteboardGUI extends JFrame{
                 break;
             }
         }
-            for(Point knob: canvas.selected.getKnobs()) {
+            Point[] knobs = canvas.selected.getKnobs();
+            for(Point knob: knobs) {
                 System.out.println(e.getX() + " " + e.getY());
                 Rectangle temp = new Rectangle(knob, new Dimension(9, 9));
                 if (temp.getBounds().contains(new Point(e.getX(), e.getY()))){
                     System.out.println("Resize");
+                    movingPoint = knob;
+                    if(knob.equals(knobs[0])){
+                        anchorPoint = knobs[3];
+                    } else if(knob.equals(knobs[1])){
+                        anchorPoint = knobs[2];
+                    } else if(knob.equals(knobs[3])){
+                        anchorPoint = knobs[0];
+                    } else{
+                        anchorPoint = knobs[1];
+                    }
+
+                    System.out.println(movingPoint);
+                    System.out.println(anchorPoint);
+
+
                     break;
                 }
             }
+
 
     }
 
@@ -152,6 +171,7 @@ public class WhiteboardGUI extends JFrame{
 //                    canvas.selected.setY(canvas.selected.getY() - yDif);
 //
 //                }
+            Point[] knobs = canvas.selected.getKnobs();
             int xDif = e.getX() - pressPointX;
             int yDif = e.getY() - pressPointY;
 
