@@ -52,6 +52,16 @@ public class WhiteboardGUI extends JFrame{
             this.addMouseMotionListener(dragListener);
         }
 
+        public void moveToFront(){
+            shapes.remove(selected);
+            shapes.add(selected);
+        }
+
+        public void moveToBack(){
+            shapes.remove(selected);
+            shapes.add(0, selected);
+        }
+
         public void addShape(DShape shape){
             shapes.add(shape);
             shape.model.addListener(canvas);
@@ -365,7 +375,8 @@ public class WhiteboardGUI extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton clicked = (JButton)e.getSource();
-            if(clicked.getText().equals("Rect")){
+            String text = clicked.getText();
+            if(text.equals("Rect")){
                 DRect rect = new DRect();
                 rect.setX(10);
                 rect.setY(10);
@@ -375,7 +386,7 @@ public class WhiteboardGUI extends JFrame{
                 WhiteboardGUI.this.canvas.addShape(rect);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
-            } else if(clicked.getText().equals("Oval")){
+            } else if(text.equals("Oval")){
                 DOval oval = new DOval();
                 oval.setX(10);
                 oval.setY(10);
@@ -385,12 +396,20 @@ public class WhiteboardGUI extends JFrame{
                 WhiteboardGUI.this.canvas.addShape(oval);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
-            } else if(clicked.getText().equals("Set Color")){
+            } else if(text.equals("Set Color")){
                 if(canvas.selected != null) {
                     canvas.selected.setColor(JColorChooser.showDialog(null, "Set Color", canvas.selected.getColor()));
                 }
-            } else if(clicked.getText().equals("Remove Shape")){
+            } else if(text.equals("Remove Shape")){
                 canvas.deleteShape();
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+            } else if(text.equals("Move To Front")){
+                canvas.moveToFront();
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+            } else if(text.equals("Move To Back")){
+                canvas.moveToBack();
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
             }

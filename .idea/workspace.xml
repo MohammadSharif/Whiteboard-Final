@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a9a7587-6e22-45c9-ab98-bf51bde32435" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DOval.java" afterPath="$PROJECT_DIR$/src/DOval.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DOvalModel.java" afterPath="$PROJECT_DIR$/src/DOvalModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DRectModel.java" afterPath="$PROJECT_DIR$/src/DRectModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DShapeModel.java" afterPath="$PROJECT_DIR$/src/DShapeModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WhiteboardGUI.java" afterPath="$PROJECT_DIR$/src/WhiteboardGUI.java" />
     </list>
     <ignored path="CS151_HW6.iws" />
@@ -56,8 +52,8 @@
       <file leaf-file-name="WhiteboardGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="394" column="48" selection-start-line="394" selection-start-column="48" selection-end-line="394" selection-end-column="48" />
+            <state relative-caret-position="224">
+              <caret line="413" column="48" selection-start-line="413" selection-start-column="48" selection-end-line="413" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -733,7 +729,7 @@
       <workItem from="1463524766365" duration="2023000" />
       <workItem from="1463616927799" duration="419000" />
       <workItem from="1463620334303" duration="13857000" />
-      <workItem from="1463678427252" duration="11215000" />
+      <workItem from="1463678427252" duration="11820000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1462687784938</created>
@@ -746,7 +742,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52552000" />
+    <option name="totallyTimeSpent" value="53157000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1239,8 +1235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="394" column="48" selection-start-line="394" selection-start-column="48" selection-end-line="394" selection-end-column="48" />
+        <state relative-caret-position="224">
+          <caret line="413" column="48" selection-start-line="413" selection-start-column="48" selection-end-line="413" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
