@@ -12,10 +12,6 @@ public class DOvalModel extends DShapeModel{
         super();
     }
 
-    public DOvalModel(int x, int y, int height, int width, Color color){
-        super(x, y, height, width, color);
-    }
-
     public void addListener(ModelListener listener){
         listeners.add(listener);
     }

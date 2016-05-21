@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Momo on 5/11/16.
@@ -67,6 +68,50 @@ public class DShape implements ModelListener{
         Point[] knobs = {topLeft, bottomLeft, topRight, bottomRight};
         System.out.println(topLeft);
         return knobs;
+    }
+
+    public void resize(Point movingPoint, Point anchorPoint, MouseEvent e){
+
+        int xChange = e.getX() - (int) movingPoint.getX();
+        int yChange = e.getY() - (int) movingPoint.getY();
+        movingPoint.move(e.getX(), e.getY());
+        int newHeight = this.getHeight() - yChange;
+        int newWidth = this.getWidth() - xChange;
+        int x = this.getX() - xChange;
+        int y = this.getY() - yChange;
+        if (movingPoint.getY() < anchorPoint.getY()) {
+            if (movingPoint.getX() < anchorPoint.getX()) {
+                this.setX(x + 2 * xChange);
+                this.setY(y + 2 * yChange);
+                this.setHeight(newHeight);
+                this.setWidth(newWidth);
+            } else if (movingPoint.getX() > anchorPoint.getX()) {
+                newWidth = this.getWidth() + xChange;
+                this.setY(y + 2 * yChange);
+                this.setHeight(newHeight);
+                this.setWidth(newWidth);
+            }
+        } else {
+            if (movingPoint.getX() < anchorPoint.getX()) {
+                this.setX(x + 2 * xChange);
+                newHeight = this.getHeight() + yChange;
+                this.setHeight(newHeight);
+                this.setWidth(newWidth);
+            } else if (movingPoint.getX() > anchorPoint.getX()) {
+                newWidth = this.getWidth() + xChange;
+                newHeight = this.getHeight() + yChange;
+                this.setHeight(newHeight);
+                this.setWidth(newWidth);
+            }
+
+        }
+    }
+
+    public void move(int pressPointX, int pressPointY, MouseEvent e, int x, int y){
+        int xDif = e.getX() - pressPointX;
+        int yDif = e.getY() - pressPointY;
+        this.setX(x + xDif);
+        this.setY(y + yDif);
     }
 
     public Rectangle getBounds(){

@@ -113,6 +113,13 @@ public class WhiteboardGUI extends JFrame{
         boolean move = false;
         boolean resize = false;
 
+
+        int p1X = 0;
+        int p1Y = 0;
+        int p2X = 0;
+        int p2Y = 0;
+
+
         @Override
         public void mouseClicked(MouseEvent e) {
             //This can check if a shape was clicked, if it was it gets stored as the selected shape in the canvas
@@ -126,6 +133,14 @@ public class WhiteboardGUI extends JFrame{
                     System.out.println(canvas.shapes.get(i).getClass().getName());
                     x = canvas.selected.getX();
                     y = canvas.selected.getY();
+                    if(canvas.selected.getClass().isInstance(new DLine())){
+                        DLine temp = (DLine)canvas.selected;
+                        DLineModel tempModel = (DLineModel)temp.model;
+                        p1X = (int)temp.getP1X();
+                        p1Y = (int)temp.getP1Y();
+                        p2X = (int)temp.getP2X();
+                        p2Y = (int)temp.getP2Y();
+                    }
                     move = true;
                     break;
                 }
@@ -137,23 +152,38 @@ public class WhiteboardGUI extends JFrame{
             for(Point knob: knobs) {
                 System.out.println(e.getX() + " " + e.getY());
                 Rectangle temp = new Rectangle(knob, new Dimension(9, 9));
-                if (temp.getBounds().contains(new Point(e.getX(), e.getY()))){
-                    System.out.println("Resize");
-                    movingPoint = knob;
-                    if(knob.equals(knobs[0])){
-                        anchorPoint = knobs[3];
-                    } else if(knob.equals(knobs[1])){
-                        anchorPoint = knobs[2];
-                    } else if(knob.equals(knobs[3])){
-                        anchorPoint = knobs[0];
-                    } else{
-                        anchorPoint = knobs[1];
+                if(knobs.length == 4) {
+                    if (temp.getBounds().contains(new Point(e.getX(), e.getY()))) {
+                        System.out.println("Resize");
+                        movingPoint = knob;
+                        if (knob.equals(knobs[0])) {
+                            anchorPoint = knobs[3];
+                        } else if (knob.equals(knobs[1])) {
+                            anchorPoint = knobs[2];
+                        } else if (knob.equals(knobs[3])) {
+                            anchorPoint = knobs[0];
+                        } else {
+                            anchorPoint = knobs[1];
+                        }
+                        System.out.println(movingPoint);
+                        System.out.println(anchorPoint);
+                        move = false;
+                        resize = true;
+                        break;
                     }
-                    System.out.println(movingPoint);
-                    System.out.println(anchorPoint);
-                    move = false;
-                    resize = true;
-                    break;
+                } else {
+                    if(temp.getBounds().contains(new Point(e.getX(), e.getY()))) {
+                        movingPoint = knob;
+                        System.out.println("RESIZE");
+                        if (knob.equals(knobs[0])) {
+                            anchorPoint = knobs[1];
+                        } else {
+                            anchorPoint = knobs[0];
+                        }
+                        move = false;
+                        resize = true;
+                        break;
+                    }
                 }
             }
 
@@ -202,49 +232,24 @@ public class WhiteboardGUI extends JFrame{
 //                    canvas.selected.setY(canvas.selected.getY() - yDif);
 //
 //                }
+
             //If the shape was clicked and needs to be moved this will move the shape around the canvas as well as the knobs
             if(move) {
-                int xDif = e.getX() - pressPointX;
-                int yDif = e.getY() - pressPointY;
-                canvas.selected.setX(x + xDif);
-                canvas.selected.setY(y + yDif);
+//                System.out.println("MOVE");
+                if(canvas.selected.getClass().isInstance(new DLine())){
+                    DLine temp = (DLine)canvas.selected;
+                    temp.move(pressPointX, pressPointY, e, p1X, p1Y, p2X, p2Y);
+
+                } else {
+                    canvas.selected.move(pressPointX, pressPointY, e, x, y);
+                }
+
             }
             //If a knob was clicked, this code takes care of properly resizing the shape
             if(resize) {
-                int xChange = e.getX() - (int) movingPoint.getX();
-                int yChange = e.getY() - (int) movingPoint.getY();
-                movingPoint.move(e.getX(), e.getY());
-                int newHeight = canvas.selected.getHeight() - yChange;
-                int newWidth = canvas.selected.getWidth() - xChange;
-                x = canvas.selected.getX() - xChange;
-                y = canvas.selected.getY() - yChange;
-                if (movingPoint.getY() < anchorPoint.getY()) {
-                    if (movingPoint.getX() < anchorPoint.getX()) {
-                        canvas.selected.setX(x + 2 * xChange);
-                        canvas.selected.setY(y + 2 * yChange);
-                        canvas.selected.setHeight(newHeight);
-                        canvas.selected.setWidth(newWidth);
-                    } else if (movingPoint.getX() > anchorPoint.getX()) {
-                        newWidth = canvas.selected.getWidth() + xChange;
-                        canvas.selected.setY(y + 2 * yChange);
-                        canvas.selected.setHeight(newHeight);
-                        canvas.selected.setWidth(newWidth);
-                    }
-                } else {
-                    if (movingPoint.getX() < anchorPoint.getX()) {
-                        canvas.selected.setX(x + 2 * xChange);
-                        newHeight = canvas.selected.getHeight() + yChange;
-                        canvas.selected.setHeight(newHeight);
-                        canvas.selected.setWidth(newWidth);
-                    } else if (movingPoint.getX() > anchorPoint.getX()) {
-                        newWidth = canvas.selected.getWidth() + xChange;
-                        newHeight = canvas.selected.getHeight() + yChange;
-                        canvas.selected.setHeight(newHeight);
-                        canvas.selected.setWidth(newWidth);
-                    }
-
-                }
+                canvas.selected.resize(movingPoint, anchorPoint, e);
             }
+
 
         }
 
@@ -394,6 +399,17 @@ public class WhiteboardGUI extends JFrame{
                 oval.setWidth(20);
                 oval.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(oval);
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+            } else if(text.equals("Line")){
+                DLine line = new DLine();
+                line.setX(10);
+                line.setY(10);
+                line.setHeight(0);
+                line.setWidth(20);
+                line.setPoints();
+                line.model.addListener(canvas);
+                WhiteboardGUI.this.canvas.addShape(line);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
             } else if(text.equals("Set Color")){
