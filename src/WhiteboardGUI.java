@@ -58,25 +58,31 @@ public class WhiteboardGUI extends JFrame{
         public void moveToFront(){
             shapes.remove(selected);
             shapes.add(selected);
+            WhiteboardGUI.this.repaint();
+            WhiteboardGUI.this.revalidate();
         }
 
         public void moveToBack(){
             shapes.remove(selected);
             shapes.add(0, selected);
+            WhiteboardGUI.this.repaint();
+            WhiteboardGUI.this.revalidate();
         }
 
         public void addShape(DShape shape){
             shapes.add(shape);
             shape.model.addListener(canvas);
-            if(selected == null){
-                selected = shape;
-            }
+            selected = shape;
+            WhiteboardGUI.this.repaint();
+            WhiteboardGUI.this.revalidate();
         }
 
         public void deleteShape(){
             selected.model.removeListener(canvas);
             shapes.remove(selected);
             selected = null;
+            WhiteboardGUI.this.repaint();
+            WhiteboardGUI.this.revalidate();
         }
 
         public void selectShape(DShape shape){
@@ -89,6 +95,14 @@ public class WhiteboardGUI extends JFrame{
             for(DShape shape: shapes){
                 g.setColor(shape.getColor());
                 shape.draw(g);
+            }
+            if(selected == null){
+                textStyleButtons.disablePanel();
+            }
+            else if(selected.getClass().isInstance(new DText())){
+                textStyleButtons.enablePanel();
+            } else{
+                textStyleButtons.disablePanel();
             }
         }
 
@@ -335,6 +349,21 @@ public class WhiteboardGUI extends JFrame{
             return textField.getText();
         }
 
+        public void enablePanel(){
+            DText temp = (DText)canvas.selected;
+            textField.setText(temp.getText());
+            fontDropDown.setSelectedItem(temp.getFont());
+            fontDropDown.setEnabled(true);
+            textField.setEnabled(true);
+        }
+
+        public void disablePanel(){
+            textField.setText("Hello");
+            fontDropDown.setSelectedItem("Dialog");
+            fontDropDown.setEnabled(false);
+            textField.setEnabled(false);
+        }
+
 
     }
 
@@ -411,8 +440,6 @@ public class WhiteboardGUI extends JFrame{
                 rect.setWidth(20);
                 rect.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(rect);
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
             } else if(text.equals("Oval")){
                 DOval oval = new DOval();
                 oval.setX(10);
@@ -421,8 +448,6 @@ public class WhiteboardGUI extends JFrame{
                 oval.setWidth(20);
                 oval.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(oval);
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
             } else if(text.equals("Line")){
                 DLine line = new DLine();
                 line.setX(10);
@@ -432,8 +457,6 @@ public class WhiteboardGUI extends JFrame{
                 line.setPoints();
                 line.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(line);
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
             } else if(text.equals("Text")){
                 DText dText = new DText();
                 dText.setX(10);
@@ -444,8 +467,6 @@ public class WhiteboardGUI extends JFrame{
                 dText.setText(textStyleButtons.getMessageText());
                 dText.model.addListener(canvas);
                 WhiteboardGUI.this.canvas.addShape(dText);
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
 
             }
             else if(text.equals("Set Color")){
@@ -454,16 +475,10 @@ public class WhiteboardGUI extends JFrame{
                 }
             } else if(text.equals("Remove Shape")){
                 canvas.deleteShape();
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
             } else if(text.equals("Move To Front")){
                 canvas.moveToFront();
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
             } else if(text.equals("Move To Back")){
                 canvas.moveToBack();
-                WhiteboardGUI.this.repaint();
-                WhiteboardGUI.this.revalidate();
             }
             else
             {

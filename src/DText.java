@@ -25,6 +25,7 @@ public class DText extends DShape {
         g.setFont(thisFont);
         g.drawString(getText(), getX(), getY() + getHeight() - 2*metrics.getDescent());
         g.setClip(clip);
+        g.setColor(Color.black);
         Point[] corners = getKnobs();
         for(Point corner: corners) {
             g.fillRect(corner.x, corner.y, 9, 9);
