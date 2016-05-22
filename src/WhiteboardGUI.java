@@ -7,7 +7,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -16,6 +18,7 @@ import java.util.Random;
 public class WhiteboardGUI extends JFrame{
     Integer[][] tableData = new Integer[0][4];
     Canvas canvas;
+    TextStyleButtons textStyleButtons;
     public static void main(String[] args) {
         new WhiteboardGUI();
     }
@@ -265,7 +268,7 @@ public class WhiteboardGUI extends JFrame{
     private class Controls extends JPanel{
         public Controls(){
             ShapeButtons shapeButtons = new ShapeButtons();
-            TextStyleButtons textStyleButtons = new TextStyleButtons();
+            textStyleButtons = new TextStyleButtons();
             FrontOrBackButtons frontOrBackButtons = new FrontOrBackButtons();
             JButton setColor = new JButton("Set Color");
             TablePanel tablePanel = new TablePanel();
@@ -308,12 +311,31 @@ public class WhiteboardGUI extends JFrame{
      * This is the panel that allows for styling of the text, font and content
      */
     private class TextStyleButtons extends JPanel{
+        JComboBox<String> fontDropDown;
+        TextField textField;
         public TextStyleButtons(){
+            String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
             this.setLayout(new FlowLayout());
-            this.add(new TextField("Whiteboard!", 15));
-            this.add(new JButton("Temp Placeholder"));
+            textField = new TextField("Hello", 15);
+            textField.setMaximumSize(textField.getSize());
+            textField.setMaximumSize(new Dimension());
+            this.add(textField);
+
+            fontDropDown = new JComboBox<String>(fonts);
+            fontDropDown.setSelectedItem("Dialog");
+            this.add(fontDropDown);
 
         }
+
+        public String getFontString(){
+            return (String)fontDropDown.getSelectedItem();
+        }
+
+        public String getMessageText(){
+            return textField.getText();
+        }
+
+
     }
 
     /**
@@ -412,7 +434,21 @@ public class WhiteboardGUI extends JFrame{
                 WhiteboardGUI.this.canvas.addShape(line);
                 WhiteboardGUI.this.repaint();
                 WhiteboardGUI.this.revalidate();
-            } else if(text.equals("Set Color")){
+            } else if(text.equals("Text")){
+                DText dText = new DText();
+                dText.setX(10);
+                dText.setY(10);
+                dText.setHeight(30);
+                dText.setWidth(20);
+                dText.setFont(textStyleButtons.getFontString());
+                dText.setText(textStyleButtons.getMessageText());
+                dText.model.addListener(canvas);
+                WhiteboardGUI.this.canvas.addShape(dText);
+                WhiteboardGUI.this.repaint();
+                WhiteboardGUI.this.revalidate();
+
+            }
+            else if(text.equals("Set Color")){
                 if(canvas.selected != null) {
                     canvas.selected.setColor(JColorChooser.showDialog(null, "Set Color", canvas.selected.getColor()));
                 }
