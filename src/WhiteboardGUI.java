@@ -11,6 +11,7 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
@@ -299,6 +300,8 @@ public class WhiteboardGUI extends JFrame{
             TablePanel tablePanel = new TablePanel();
             JPanel setColorPanel = new JPanel();
             setColorPanel.add(setColor);
+            SaveAndOpen saveAndOpen = new SaveAndOpen();
+
 
 
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -310,6 +313,7 @@ public class WhiteboardGUI extends JFrame{
             this.add(textStyleButtons);
             this.add(frontOrBackButtons);
             this.add(tablePanel);
+            this.add(saveAndOpen);
 
 
         }
@@ -349,7 +353,7 @@ public class WhiteboardGUI extends JFrame{
 
                 @Override
                 public void keyTyped(KeyEvent e) {
-                    
+
                 }
 
                 @Override
@@ -523,6 +527,17 @@ public class WhiteboardGUI extends JFrame{
 
 
 
+    private class SaveAndOpen extends JPanel{
+        public SaveAndOpen(){
+            this.setLayout(new FlowLayout());
+            JButton save = new JButton("Save");
+            save.addActionListener(new ListenForButton());
+            JButton open = new JButton("Open");
+            open.addActionListener(new ListenForButton());
+            this.add(save);
+            this.add(open);
+        }
+    }
 
 
     /**
@@ -596,6 +611,23 @@ public class WhiteboardGUI extends JFrame{
                 canvas.moveToFront();
             } else if(text.equals("Move To Back")){
                 canvas.moveToBack();
+            } else if(text.equals("Save")){
+                JFileChooser jFileChooser = new JFileChooser();
+                jFileChooser.setDialogTitle("Save your file");
+                DShapeModel[] models = new DShapeModel[canvas.shapes.size()];
+                for(DShape shape: canvas.shapes){
+                    models[canvas.shapes.indexOf(shape)] = shape.model;
+                }
+                int userSelection = jFileChooser.showSaveDialog(WhiteboardGUI.this);
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        File file = jFileChooser.getSelectedFile();
+                        WhiteboardFile.save(file.getName(), models);
+                    } catch(Exception exc){
+                        exc.printStackTrace();
+                    }
+                }
+
             }
             else
             {
