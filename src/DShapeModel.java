@@ -77,7 +77,7 @@ public class DShapeModel {
     }
 
     public Rectangle getBounds(){
-        return new Rectangle(getX(), getY(), getWidth(), getHeight());
+        return new Rectangle(getX(), getY(), getWidth() + 9, getHeight() + 9);
     }
 
     public void addListener(ModelListener listener){

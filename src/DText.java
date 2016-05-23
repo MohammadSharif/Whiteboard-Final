@@ -18,12 +18,13 @@ public class DText extends DShape {
             public int getDescent() {
                 return super.getDescent();
             }
+
         };
 
         Shape clip = g.getClip();
         g.setClip(clip.getBounds().createIntersection(getBounds()));
         g.setFont(thisFont);
-        g.drawString(getText(), getX(), getY() + getHeight() - 2*metrics.getDescent());
+        g.drawString(getText(), getX(), getY() + metrics.getAscent() + metrics.getDescent());
         g.setClip(clip);
         g.setColor(Color.black);
         Point[] corners = getKnobs();

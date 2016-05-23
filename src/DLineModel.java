@@ -68,19 +68,19 @@ public class DLineModel extends DShapeModel{
         int height = 0;
         if(p1.getX() < p2.getX()){
             if(p1.getY() < p2.getY()){
-                return new Rectangle((int)p1.getX(),(int)p1.getY(), (int)(p2.getX() - p1.getX()), (int)(p2.getY() - p1.getY()));
+                return new Rectangle((int)p1.getX(),(int)p1.getY(), (int)(p2.getX() - p1.getX()) + (9/2), (int)(p2.getY() - p1.getY()) + (9/2));
             } else if(p1.getY() > p2.getY()){
-                return new Rectangle((int)p1.getX(),(int)p2.getY(), (int)(p2.getX() - p1.getX()), (int)(p1.getY() - p2.getY()));
+                return new Rectangle((int)p1.getX(),(int)p2.getY(), (int)(p2.getX() - p1.getX())+ (9/2), (int)(p1.getY() - p2.getY()) + (9/2));
             }
         }
         else if(p1.getX() > p2.getX()){
             if(p1.getY() < p2.getY()){
-                return new Rectangle((int)p2.getX(),(int)p1.getY(), (int)(p1.getX() - p2.getX()), (int)(p2.getY() - p1.getY()));
+                return new Rectangle((int)p2.getX(),(int)p1.getY(), (int)(p1.getX() - p2.getX()) + (9/2), (int)(p2.getY() - p1.getY()) + (9/2));
             } else {
-                return new Rectangle((int)p2.getX(),(int)p2.getY(), (int)(p1.getX() - p2.getX()), (int)(p1.getY() - p2.getY()));
+                return new Rectangle((int)p2.getX(),(int)p2.getY(), (int)(p1.getX() - p2.getX()) + (9/2), (int)(p1.getY() - p2.getY()) + (9/2));
             }
         }
-        return new Rectangle((int)p1.getX(), (int)p1.getY() - 5, 20, 10);
+        return new Rectangle((int)p1.getX(), (int)p1.getY() - 5, 20 + (9/2), 10 + (9/2));
 
     }
 

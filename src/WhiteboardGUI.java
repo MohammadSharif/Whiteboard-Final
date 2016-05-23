@@ -423,7 +423,7 @@ public class WhiteboardGUI extends JFrame{
             this.setPreferredSize(new Dimension(400, 300));
             this.setMaximumSize(this.getPreferredSize());
         }
-        
+
 
 
 
