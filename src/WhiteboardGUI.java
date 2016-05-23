@@ -1,4 +1,5 @@
 
+
 import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 
@@ -16,9 +18,10 @@ import java.util.Random;
  * Created by Momo on 5/7/16.
  */
 public class WhiteboardGUI extends JFrame{
-    Integer[][] tableData = new Integer[0][4];
+    Integer[][] tableData;
     Canvas canvas;
     TextStyleButtons textStyleButtons;
+    OurTableModel ourTableModel;
     public static void main(String[] args) {
         new WhiteboardGUI();
     }
@@ -74,30 +77,18 @@ public class WhiteboardGUI extends JFrame{
             shape.model.addListener(canvas);
             selected = shape;
             tableData = new Integer[shapes.size()][4];
-            for(int i = 0; i < shapes.size(); i++){
-                DShape dShape = shapes.get(i);
-                int[] temp = {shape.getX(), shape.getY(), shape.getHeight(), shape.getWidth()};
-                for(int j = 0; j < 4; j++) {
-                    tableData[i][j] = temp[j];
-                }
-            }
 
             WhiteboardGUI.this.repaint();
             WhiteboardGUI.this.revalidate();
         }
 
         public void deleteShape(){
+//            ourTableModel.removed(selected);
             selected.model.removeListener(canvas);
+            selected.model.removeListener(ourTableModel);
             shapes.remove(selected);
             selected = null;
-            tableData = new Integer[shapes.size()][4];
-            for(int i = 0; i < shapes.size(); i++){
-                DShape shape = shapes.get(i);
-                int[] temp = {shape.getX(), shape.getY(), shape.getHeight(), shape.getWidth()};
-                for(int j = 0; j < 4; j++) {
-                    tableData[i][j] = temp[j];
-                }
-            }
+//            tableData = new Integer[shapes.size()][4];
             WhiteboardGUI.this.repaint();
             WhiteboardGUI.this.revalidate();
         }
@@ -408,24 +399,21 @@ public class WhiteboardGUI extends JFrame{
      * This is the panel at the bottom of the controls which will hold a table of the coordinates of shapes and their sizes
      */
     private class TablePanel extends JPanel{
-        OurTableModel ourTableModel = new OurTableModel();
-        int[][] ourData = new int[4][4];
-        public TablePanel(){
-            this.setLayout(new BorderLayout());
 
-            String[] names = {"X", "Y", "Width", "Height"};
-//            DefaultTableModel dataModel = new DefaultTableModel() {
-//                public int getColumnCount() { return 4; }
-//                public int getRowCount() { return 10;}
-//                public Object getValueAt(int row, int col) { return null; }
-//
-//
-//                @Override
-//                public String getColumnName(int index) {
-//                    return names[index];
-//                }
-//            };
-            JTable table = new JTable(tableData, names);
+
+        JTable table;
+        String[] names;
+
+        public TablePanel(){
+            ourTableModel = new OurTableModel(this);
+            this.setLayout(new BorderLayout());
+            names = new String[]{"X", "Y", "Width", "Height"};
+
+            tableData = new Integer[4][4];
+
+            table = new JTable(ourTableModel.ourData, names);
+            table.setModel(ourTableModel);
+
             TableCellRenderer rendererFromHeader = table.getTableHeader().getDefaultRenderer();
             JLabel headerLabel = (JLabel) rendererFromHeader;
             headerLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -435,47 +423,76 @@ public class WhiteboardGUI extends JFrame{
             this.setPreferredSize(new Dimension(400, 300));
             this.setMaximumSize(this.getPreferredSize());
         }
-
-        public void fillTable(){
-            if(ourData.length <= canvas.shapes.size()){
-                ourData = new int[canvas.shapes.size()*2][4];
-            }
-            for(int i = 0; i < canvas.shapes.size(); i++){
-                for(int j = 0; j < 4; j++){
-                    ourData[i][j] = (int)ourTableModel.getValueAt(i, j);
-                }
-            }
-        }
+        
 
 
 
 
     }
 
-    private class OurTableModel extends AbstractTableModel{
+    private class OurTableModel extends AbstractTableModel implements ModelListener{
+        private Integer[][] ourData;
+        TablePanel tablePanel;
+        public OurTableModel(TablePanel tablePanel){
+            this.tablePanel = tablePanel;
+            ourData = new Integer[0][4];
+        }
 
         @Override
         public int getRowCount() {
-            return 0;
+            return canvas.shapes.size();
         }
 
         @Override
         public int getColumnCount() {
-            return 0;
+            return 4;
         }
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            DShape temp = canvas.shapes.get(canvas.shapes.size() - rowIndex);
-            if(columnIndex == 1){
-                return temp.getX();
-            } else if(columnIndex == 2){
-                return temp.getY();
-            } else if(columnIndex == 3){
-                return temp.getHeight();
-            } else {
-                return temp.getWidth();
+
+                DShape temp = canvas.shapes.get(canvas.shapes.size() - rowIndex - 1);
+                if (columnIndex == 0) {
+                    return temp.getX();
+                } else if (columnIndex == 1) {
+                    return temp.getY();
+                } else if (columnIndex == 2) {
+                    return temp.getWidth();
+                } else {
+                    return temp.getHeight();
+                }
+
+        }
+
+        public void fillTable(){
+            ourData = new Integer[getRowCount()][getColumnCount()];
+            for(int i = 0; i < getRowCount(); i++){
+                for(int j = 0; j < getColumnCount(); j++) {
+                    ourData[i][j] = (int)getValueAt(i, j);
+                }
             }
+        }
+
+        public void removed(){
+            fillTable();
+            fireTableDataChanged();
+        }
+
+        public void added(){
+            fillTable();
+            fireTableDataChanged();
+        }
+
+        @Override
+        public void modelChanged(DShapeModel model) {
+            int index = 0;
+            for(DShape shape: canvas.shapes){
+                if(shape.model.equals(model)){
+                    index = canvas.shapes.indexOf(shape);
+                }
+            }
+            fireTableRowsUpdated(index, index);
+
         }
     }
 
@@ -499,7 +516,9 @@ public class WhiteboardGUI extends JFrame{
                 rect.setHeight(20);
                 rect.setWidth(20);
                 rect.model.addListener(canvas);
+                rect.model.addListener(ourTableModel);
                 WhiteboardGUI.this.canvas.addShape(rect);
+                WhiteboardGUI.this.ourTableModel.added();
             } else if(text.equals("Oval")){
                 DOval oval = new DOval();
                 oval.setX(10);
@@ -507,7 +526,11 @@ public class WhiteboardGUI extends JFrame{
                 oval.setHeight(20);
                 oval.setWidth(20);
                 oval.model.addListener(canvas);
+                oval.model.addListener(ourTableModel);
+
                 WhiteboardGUI.this.canvas.addShape(oval);
+                WhiteboardGUI.this.ourTableModel.added();
+
             } else if(text.equals("Line")){
                 DLine line = new DLine();
                 line.setX(10);
@@ -516,7 +539,10 @@ public class WhiteboardGUI extends JFrame{
                 line.setWidth(20);
                 line.setPoints();
                 line.model.addListener(canvas);
+                line.model.addListener(ourTableModel);
                 WhiteboardGUI.this.canvas.addShape(line);
+                WhiteboardGUI.this.ourTableModel.added();
+
             } else if(text.equals("Text")){
                 DText dText = new DText();
                 dText.setX(10);
@@ -526,7 +552,11 @@ public class WhiteboardGUI extends JFrame{
                 dText.setFont(textStyleButtons.getFontString());
                 dText.setText(textStyleButtons.getMessageText());
                 dText.model.addListener(canvas);
+                dText.model.addListener(ourTableModel);
+
                 WhiteboardGUI.this.canvas.addShape(dText);
+                WhiteboardGUI.this.ourTableModel.added();
+
 
             }
             else if(text.equals("Set Color")){
@@ -535,6 +565,8 @@ public class WhiteboardGUI extends JFrame{
                 }
             } else if(text.equals("Remove Shape")){
                 canvas.deleteShape();
+                ourTableModel.removed();
+
             } else if(text.equals("Move To Front")){
                 canvas.moveToFront();
             } else if(text.equals("Move To Back")){
