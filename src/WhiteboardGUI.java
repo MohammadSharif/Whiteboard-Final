@@ -73,6 +73,15 @@ public class WhiteboardGUI extends JFrame{
             shapes.add(shape);
             shape.model.addListener(canvas);
             selected = shape;
+            tableData = new Integer[shapes.size()][4];
+            for(int i = 0; i < shapes.size(); i++){
+                DShape dShape = shapes.get(i);
+                int[] temp = {shape.getX(), shape.getY(), shape.getHeight(), shape.getWidth()};
+                for(int j = 0; j < 4; j++) {
+                    tableData[i][j] = temp[j];
+                }
+            }
+
             WhiteboardGUI.this.repaint();
             WhiteboardGUI.this.revalidate();
         }
@@ -81,6 +90,14 @@ public class WhiteboardGUI extends JFrame{
             selected.model.removeListener(canvas);
             shapes.remove(selected);
             selected = null;
+            tableData = new Integer[shapes.size()][4];
+            for(int i = 0; i < shapes.size(); i++){
+                DShape shape = shapes.get(i);
+                int[] temp = {shape.getX(), shape.getY(), shape.getHeight(), shape.getWidth()};
+                for(int j = 0; j < 4; j++) {
+                    tableData[i][j] = temp[j];
+                }
+            }
             WhiteboardGUI.this.repaint();
             WhiteboardGUI.this.revalidate();
         }
@@ -104,6 +121,7 @@ public class WhiteboardGUI extends JFrame{
             } else{
                 textStyleButtons.disablePanel();
             }
+
         }
 
         @Override
@@ -390,6 +408,8 @@ public class WhiteboardGUI extends JFrame{
      * This is the panel at the bottom of the controls which will hold a table of the coordinates of shapes and their sizes
      */
     private class TablePanel extends JPanel{
+        OurTableModel ourTableModel = new OurTableModel();
+        int[][] ourData = new int[4][4];
         public TablePanel(){
             this.setLayout(new BorderLayout());
 
@@ -416,7 +436,47 @@ public class WhiteboardGUI extends JFrame{
             this.setMaximumSize(this.getPreferredSize());
         }
 
+        public void fillTable(){
+            if(ourData.length <= canvas.shapes.size()){
+                ourData = new int[canvas.shapes.size()*2][4];
+            }
+            for(int i = 0; i < canvas.shapes.size(); i++){
+                for(int j = 0; j < 4; j++){
+                    ourData[i][j] = (int)ourTableModel.getValueAt(i, j);
+                }
+            }
+        }
 
+
+
+
+    }
+
+    private class OurTableModel extends AbstractTableModel{
+
+        @Override
+        public int getRowCount() {
+            return 0;
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            DShape temp = canvas.shapes.get(canvas.shapes.size() - rowIndex);
+            if(columnIndex == 1){
+                return temp.getX();
+            } else if(columnIndex == 2){
+                return temp.getY();
+            } else if(columnIndex == 3){
+                return temp.getHeight();
+            } else {
+                return temp.getWidth();
+            }
+        }
     }
 
 
