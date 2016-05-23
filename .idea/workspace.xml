@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a9a7587-6e22-45c9-ab98-bf51bde32435" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DLineModel.java" afterPath="$PROJECT_DIR$/src/DLineModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DShapeModel.java" afterPath="$PROJECT_DIR$/src/DShapeModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DText.java" afterPath="$PROJECT_DIR$/src/DText.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WhiteboardGUI.java" afterPath="$PROJECT_DIR$/src/WhiteboardGUI.java" />
     </list>
     <ignored path="CS151_HW6.iws" />
@@ -77,17 +74,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WhiteboardGUI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WhiteboardGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="824">
-              <caret line="425" column="0" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
+            <state relative-caret-position="149">
+              <caret line="351" column="20" selection-start-line="351" selection-start-column="20" selection-end-line="351" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#673#674#0" expanded="true" />
-                <element signature="e#708#709#0" expanded="true" />
-                <element signature="e#15132#15133#0" expanded="true" />
-                <element signature="e#15183#15184#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+                <element signature="e#791#792#0" expanded="true" />
+                <element signature="e#15769#15770#0" expanded="true" />
+                <element signature="e#15820#15821#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,10 +115,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DText.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DText.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DText.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="15">
               <caret line="26" column="71" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="71" />
               <folding />
             </state>
@@ -131,7 +128,7 @@
       <file leaf-file-name="DTextModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DTextModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
+            <state relative-caret-position="330">
               <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -144,7 +141,7 @@
       <file leaf-file-name="DShape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DShape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="1215">
               <caret line="109" column="69" selection-start-line="109" selection-start-column="69" selection-end-line="109" selection-end-column="69" />
               <folding />
             </state>
@@ -191,10 +188,10 @@
         <option value="$PROJECT_DIR$/src/DShape.java" />
         <option value="$PROJECT_DIR$/src/DLine.java" />
         <option value="$PROJECT_DIR$/src/DTextModel.java" />
-        <option value="$PROJECT_DIR$/src/WhiteboardGUI.java" />
         <option value="$PROJECT_DIR$/src/DShapeModel.java" />
         <option value="$PROJECT_DIR$/src/DLineModel.java" />
         <option value="$PROJECT_DIR$/src/DText.java" />
+        <option value="$PROJECT_DIR$/src/WhiteboardGUI.java" />
       </list>
     </option>
   </component>
@@ -777,7 +774,7 @@
       <workItem from="1463803818335" duration="10636000" />
       <workItem from="1463821267218" duration="5193000" />
       <workItem from="1463948350999" duration="12274000" />
-      <workItem from="1463961867956" duration="13175000" />
+      <workItem from="1463961867956" duration="15220000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1462687784938</created>
@@ -790,7 +787,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94642000" />
+    <option name="totallyTimeSpent" value="96687000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -877,7 +874,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/WhiteboardGUI.java</url>
-          <line>466</line>
+          <line>491</line>
           <properties class="WhiteboardGUI.OurTableModel" method="fillTable" />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -915,10 +912,10 @@
           <caret line="56" column="62" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1020,10 +1017,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1214,10 +1211,10 @@
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1263,10 +1260,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1277,10 +1274,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1291,10 +1288,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1305,10 +1302,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1319,10 +1316,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1333,10 +1330,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1499,28 +1496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="824">
-          <caret line="425" column="0" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#15132#15133#0" expanded="true" />
-            <element signature="e#15183#15184#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DShape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="109" column="69" selection-start-line="109" selection-start-column="69" selection-end-line="109" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DShapeModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
@@ -1529,12 +1504,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DLine.java">
+    <entry file="file://$PROJECT_DIR$/src/DTextModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+        <state relative-caret-position="330">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1550,22 +1526,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DTextModel.java">
+    <entry file="file://$PROJECT_DIR$/src/DLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="401">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#551#552#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="15">
           <caret line="26" column="71" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DShape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="109" column="69" selection-start-line="109" selection-start-column="69" selection-end-line="109" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WhiteboardGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="351" column="20" selection-start-line="351" selection-start-column="20" selection-end-line="351" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#15769#15770#0" expanded="true" />
+            <element signature="e#15820#15821#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

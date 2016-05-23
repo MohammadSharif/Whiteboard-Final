@@ -2,6 +2,8 @@
 
 import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -342,6 +344,29 @@ public class WhiteboardGUI extends JFrame{
             textField = new TextField("Hello", 15);
             textField.setMaximumSize(textField.getSize());
             textField.setMaximumSize(new Dimension());
+            textField.addKeyListener(new KeyListener() {
+
+
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    DText temp = (DText)canvas.selected;
+                    temp.setText(textField.getText());
+                    temp.model.notifyListeners();
+                }
+
+            });
+
+
             this.add(textField);
 
             fontDropDown = new JComboBox<String>(fonts);
