@@ -26,6 +26,7 @@ public class WhiteboardGUI extends JFrame{
     Canvas canvas;
     TextStyleButtons textStyleButtons;
     OurTableModel ourTableModel;
+    ServerButtons serverButtons;
     public static void main(String[] args) {
         new WhiteboardGUI();
     }
@@ -324,6 +325,7 @@ public class WhiteboardGUI extends JFrame{
             JPanel setColorPanel = new JPanel();
             setColorPanel.add(setColor);
             SaveAndOpen saveAndOpen = new SaveAndOpen();
+            serverButtons = new ServerButtons();
 
 
 
@@ -337,6 +339,7 @@ public class WhiteboardGUI extends JFrame{
             this.add(frontOrBackButtons);
             this.add(tablePanel);
             this.add(saveAndOpen);
+            this.add(serverButtons);
 
 
         }
@@ -569,6 +572,30 @@ public class WhiteboardGUI extends JFrame{
         }
     }
 
+    private class ServerButtons extends JPanel{
+        JLabel serverStatus;
+        public ServerButtons(){
+            this.setLayout(new FlowLayout());
+            JButton serverStart = new JButton("Server Start");
+            serverStart.addActionListener(new ListenForButton());
+            serverStatus = new JLabel("");
+            JButton clientStart = new JButton("Client Start");
+            clientStart.addActionListener(new ListenForButton());
+            this.add(serverStart);
+            this.add(clientStart);
+            this.add(serverStatus);
+        }
+
+        public void startClient(){
+            serverStatus.setText("Client Mode");
+        }
+
+        public void startServer(){
+            serverStatus.setText("Server Mode");
+        }
+
+    }
+
 
     /**
      * This class is a listener that will know which button is clicked and execute the proper function
@@ -690,6 +717,10 @@ public class WhiteboardGUI extends JFrame{
                 }
             } else if(text.equals("Save Image")){
                 canvas.saveAsImage();
+            } else if(text.equals("Server Start")){
+                serverButtons.startServer();
+            } else if(text.equals("Client Start")){
+                serverButtons.startClient();
             }
 
         }
