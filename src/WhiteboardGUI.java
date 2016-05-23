@@ -96,6 +96,28 @@ public class WhiteboardGUI extends JFrame{
             WhiteboardGUI.this.revalidate();
         }
 
+        public void deleteAllShapes(){
+            shapes = new ArrayList<>();
+        }
+
+        public void saveAsImage(){
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.setDialogTitle("Save your file");
+            int userSelection = jFileChooser.showSaveDialog(WhiteboardGUI.this);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = jFileChooser.getSelectedFile();
+                    BufferedImage image = (BufferedImage) createImage(canvas.getWidth(), canvas.getHeight());
+                    Graphics g = image.getGraphics();
+                    paintAll(g);
+                    g.dispose();
+                    javax.imageio.ImageIO.write(image, "PNG", file);
+                } catch(Exception exc){
+                    exc.printStackTrace();
+                }
+            }
+        }
+
         public void selectShape(DShape shape){
             selected = shape;
         }
@@ -388,11 +410,15 @@ public class WhiteboardGUI extends JFrame{
         }
 
         public void enablePanel(){
-            DText temp = (DText)canvas.selected;
-            textField.setText(temp.getText());
-            fontDropDown.setSelectedItem(temp.getFont());
-            fontDropDown.setEnabled(true);
-            textField.setEnabled(true);
+            DText temp = null;
+            if(new DText().getClass().isInstance(canvas.selected)) {
+               temp =(DText) canvas.selected;
+                textField.setText(temp.getText());
+                fontDropDown.setSelectedItem(temp.getFont());
+                fontDropDown.setEnabled(true);
+                textField.setEnabled(true);
+            }
+
         }
 
         public void disablePanel(){
@@ -534,8 +560,11 @@ public class WhiteboardGUI extends JFrame{
             save.addActionListener(new ListenForButton());
             JButton open = new JButton("Open");
             open.addActionListener(new ListenForButton());
+            JButton saveImage = new JButton("Save Image");
+            saveImage.addActionListener(new ListenForButton());
             this.add(save);
             this.add(open);
+            this.add(saveImage);
         }
     }
 
@@ -628,13 +657,28 @@ public class WhiteboardGUI extends JFrame{
                     }
                 }
 
-            }
-            else
-            {
-                canvas.selected.setColor(Color.green);
-                canvas.selected.setX(0);
-                canvas.selected.setY(100);
+            } else if(text.equals("Open")){
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Open a file");
+                int userSelection = fileChooser.showOpenDialog(WhiteboardGUI.this);
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    try{
+                        canvas.removeAll();
+                        DShapeModel[] temp = WhiteboardFile.read(file.getName());
+                        ArrayList<DShape> tempList = new ArrayList<>();
+                        for(DShapeModel model: temp){
+                            DShape dShape = new DShape();
+                            dShape.model = model;
+                            canvas.addShape(dShape);
+                        }
 
+                    } catch (Exception exc){
+                        exc.printStackTrace();
+                    }
+                }
+            } else if(text.equals("Save Image")){
+                canvas.saveAsImage();
             }
 
         }

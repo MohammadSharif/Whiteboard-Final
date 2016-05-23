@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_40" class="java.beans.XMLDecoder">
- <array class="DShapeModel" length="1">
+ <array class="DShapeModel" length="2">
   <void index="0">
    <object class="DRectModel">
     <void property="height">
@@ -14,6 +14,22 @@
     </void>
     <void property="y">
      <int>10</int>
+    </void>
+   </object>
+  </void>
+  <void index="1">
+   <object class="DOvalModel">
+    <void property="height">
+     <int>20</int>
+    </void>
+    <void property="width">
+     <int>20</int>
+    </void>
+    <void property="x">
+     <int>125</int>
+    </void>
+    <void property="y">
+     <int>111</int>
     </void>
    </object>
   </void>
