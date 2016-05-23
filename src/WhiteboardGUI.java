@@ -8,6 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
+import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -80,7 +81,7 @@ public class WhiteboardGUI extends JFrame{
             shape.model.addListener(canvas);
             selected = shape;
             tableData = new Integer[shapes.size()][4];
-
+            ourTableModel.added();
             WhiteboardGUI.this.repaint();
             WhiteboardGUI.this.revalidate();
         }
@@ -668,7 +669,17 @@ public class WhiteboardGUI extends JFrame{
                         DShapeModel[] temp = WhiteboardFile.read(file.getName());
                         ArrayList<DShape> tempList = new ArrayList<>();
                         for(DShapeModel model: temp){
-                            DShape dShape = new DShape();
+                            DShape dShape;
+                            if(model.getClass().isInstance(new DLineModel())){
+                                dShape = new DLine();
+
+                            } else if(model.getClass().isInstance(new DOvalModel())){
+                                dShape = new DOval();
+                            } else if(model.getClass().isInstance(new DRectModel())){
+                                dShape = new DRect();
+                            } else {
+                                dShape = new DText();
+                            }
                             dShape.model = model;
                             canvas.addShape(dShape);
                         }
